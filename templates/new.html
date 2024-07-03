@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainfall Prediction </title>
+    <link rel="shortcut icon" href="/static/favicon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.0.1/dist/alpine.js" defer></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no"
+        name="viewport" />
+    <meta name="title" content="Bike Rent Prediction" />
+    <meta name="description" content="Prediction of bike rental count on daily based, environment and seasonal setting." />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bike Rent Prediction " />
+    <meta property="og:description" content="Prediction of bike rental count on daily based, environment and seasonal setting." />
+    <meta property="og:image" content="https://bike-rent.ineuronvision.com/static/logo.png" />
+    <meta property="og:url" content="https://bike-rent.ineuronvision.com" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="Bike Rent Prediction " />
+    <meta property="twitter:description" content="Prediction of bike rental count on daily based, environment and seasonal setting." />
+    <meta property="twitter:image" content="https://bike-rent.ineuronvision.com/static/logo.png" />
+    <meta property="twitter:url" content="https://bike-rent.ineuronvision.com" />
+
+</head>
+
+<style>
+    .donutSpinner {
+        display: inline-block;
+        border: 4px solid hsl(222, 100%, 95%);
+        border-left-color: hsl(243, 80%, 62%);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: donut-spin 1.2s linear infinite;
+    }
+
+    button:focus,
+    textarea:focus,
+    input:focus {
+        outline: none;
+    }
+
+    @keyframes donut-spin {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div x-data="{ open: false }" class="relative pt-6">
+
+
+        
+        
+    
+        <!-- Into Section -->
+        <div class="mt-8 mx-auto max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-20 xl:mt-24">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
+                    <h2
+                        class="mt-1 text-4xl tracking-tight leading-10 font-extrabold text-gray-900 sm:leading-none sm:text-6xl lg:text-5xl xl:text-6xl">
+                        Rainfall<span class="text-red-600">Prediction</span>
+
+                    </h2>
+                    
+                    <div class="mt-5 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
+                        <p class="text-base font-medium text-gray-900">
+                            <!-- Want a enterprise version of this product? -->
+                        </p>
+                        
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div id="inputSection" class="container z-50 mx-auto mt-32  bg-gray-100 rounded-lg">
+            <div class="z-0 flex xl:flex-row lg:flex-row md:flex-col flex-col p-14">
+
+                <form action="/predict" method="POST" class="w-full">
+                    <div class="bg-white shadow overflow-hidden rounded-lg w-full">
+                        <div class="px-4 py-5 sm:px-6 flex flex-col sm:flex-row justify-between">
+                            <div>
+                                <h3 class="text-lg leading-6 font-medium text-red-600">
+                                    Predictive Analysis
+                                </h3>
+                                <p class="mt-1 max-w-2xl text-sm text-gray-600">
+                                    Select the attributs.
+                                </p>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <div class="border-t border-b border-gray-200 flex flex-col md:flex-row justify-between">
+                            <dl class="w-full">
+                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        day
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" min="1" max="30" id="one" name="day" placeholder="between 1 to 30"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                                <div class="bg-white  px-4 py-5 mt-0.5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        pressure
+                                        <span class="text-xs pt-1 font-semibold text-gray-400">*</span>
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" id="two" min="1000.0" max="2000.00" name="pressure" placeholder="between 1000.00 to 2000.00"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                                    
+                                <div class="bg-white  px-4 py-5 mt-0.5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        maxtemp
+                                        <span class="text-xs pt-1 font-semibold text-gray-400">(˚C)*</span>
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" id="three" min="0.0" max="50.00" name="maxtemp" placeholder="between 00.00 to 50.00"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+
+                                
+                                <div class="bg-white  px-4 py-5 mt-0.5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        temparature
+                                        <span class="text-xs pt-1 font-semibold text-gray-400">(˚C)*</span>
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" id="eight" min="0.0" max="50.00" name="temparature" placeholder="between 00.00 to 50.00"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                                <div class="bg-gray-50 md:bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        mintemp
+                                        <span class="text-xs pt-1 font-semibold text-gray-400">(˚C)*</span>
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" id="nine" min="0.0" max="50.00" name="mintemp" placeholder="between 0.07 to 0.84"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                                <div class="bg-gray-50 md:bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        dewpoint
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" id="ten" min="0.0" max="99.0" name="dewpoint" placeholder="between 0.0 to 99.0"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                            </dl>
+                            
+                            <dl class="w-full">
+                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        humidity
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" min="50" max="100" id="four" name="humidity" placeholder="between 50 to 100"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                                <div class="bg-white md:bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        cloud
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" min="0" max="80" id="eleven" name="cloud" placeholder="between 0 to 80"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                                <div class="bg-white md:bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        sunshine
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" min="0.0" max="20.0" id="five" name="sunshine" placeholder="between 0.0 to 20.0"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        winddirection
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" min="10" max="300" id="six" name="winddirection" placeholder="between 10 to 300"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                                
+                                
+                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm font-medium text-gray-500 my-auto">
+                                        windspeed
+                                    </dt>
+                                    <dd class="mt-2 md:mt-auto sm:col-span-2">
+                                        <input type="text" min="0.0" max="30.0" id="seven" name="windspeed" placeholder="between 0.0 to 30.0"
+                                            required class="text-sm text-gray-900 w-full md:w-4/5 px-2 py-1.5 rounded-md border border-gray-200">
+                                    </dd>
+                                </div>
+                                
+                            <div class="px-4 py-5 sm:px-6 flex flex-col md:flex-row justify-between">
+                                <button type="button" onclick="randomValue()" class="text-sm text-gray-500 my-auto">
+                                    <u>Use random values</u>
+                                </button>
+                                <p class="my-2 mx-auto md:mx-0 md:my-auto max-w-2xl">
+                                    <button type="submit" value="submit"
+                                        class="flex-shrink-0 text-white bg-red-600 border-0 py-1.5 px-6 focus:outline-none hover:bg-red-700 rounded text-sm">Submit</button>
+                                </p>
+                            </div>
+                        </div>
+                    </form>
+    
+                </div>
+            </div>
+    
+        
+        </div>
+    
+    <!-- Result Section -->
+    <div id="resultSection" class="container z-50 mx-auto mt-12 bg-gray-100 rounded-lg">
+        <div class="z-0 flex xl:flex-row lg:flex-row md:flex-col flex-col p-14">
+            <section class="text-gray-700 body-font bg-white rounded-lg w-full">
+                <div class="px-8 py-5">
+                    <h3 class="mb-3 text-xl font-semibold text-red-600 lg:text-2xl title-font">Result</h3>
+                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                        Predictive Analysis.
+                    </p>
+                </div>
+                <div
+                    class="container mx-auto flex px-5 py-6 items-center justify-center flex-col border-t border-b border-gray-200">
+                    <div class="text-center lg:w-2/3 w-full">
+                        <h1 class=" mb-4 h-auto py-2 px-4 text-base leading-relaxed bg-gray-50 rounded-lg">
+                            Rainfall Prediction is<span class="text-red-500 font-semibold"> {{prediction_text}}</span></h1>
+                            <h1 class=" mb-4 h-auto py-2 px-4 text-base leading text-red-500 font-bold ">
+                                *(  1 is for Rainfall ) ||<span class="text-red-500 font-bold">|| (  0 is for No-Rainfall  )* </h1>
+                    </div>
+                </div>
+                <div class="px-4 py-5 sm:px-6 w-full">
+                    <p class="my-auto text-right">
+                        <a href="/#inputSection"><button
+                                class="flex-shrink-0 text-white bg-red-600 border-0 py-1.5 px-6 focus:outline-none hover:bg-red-700 rounded text-sm">Back</button></a>
+                    </p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    
+    
+    <script>
+        const one = document.getElementById('one')
+        const two = document.getElementById('two')
+        const three = document.getElementById('three')
+        const four = document.getElementById('four')
+        const five = document.getElementById('five')
+        const six = document.getElementById('six')
+        const seven = document.getElementById('seven')
+        const eight = document.getElementById('eight')
+        const nine = document.getElementById('nine')
+        const ten = document.getElementById('ten')
+        const eleven = document.getElementById('eleven')
+        const twelve = document.getElementById('twelve')
+        const thirteen = document.getElementById('thirteen')
+        const fourteen = document.getElementById('fourteen')
+
+
+        var randomArray1 = ["16", "15", "27", "29","22","5"]
+        var randomArray2 = ["1010.5", "1011.9", "1024.3", "1022.7", "1013.0"]
+        var randomArray3 = ["28.1", "31.0", "17.5", "15.3","24.9"]
+        var randomArray4 = ["89", "64", "94", "74", "83", "27"]
+        var randomArray5 = ["3.5", "2.1", "10.8", "8.8", "5.5", "0.2"]
+        var randomArray6 = ["210", "70", "40", "100", "10", "90"]
+        var randomArray7 = ["15.3", "33.5", "29.6", "13.8", "6.1"]
+        
+
+        function randomValue() {
+
+            one.value = randomItem(randomArray1)
+            two.value = randomItem(randomArray2)
+            three.value = randomItem(randomArray3)
+
+            four.value = randomItem(randomArray4)
+            five.value = randomItem(randomArray5)
+
+            six.value = randomItem(randomArray6)
+            seven.value = randomItem(randomArray7)
+            eight.value= randomItem(randomArray3)
+            nine.value= randomItem(randomArray3)
+            ten.value= randomItem(randomArray3)
+            eleven.value= randomItem(randomArray4)
+            
+
+        }
+
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * ((max - 1) - min + 1)) + min;
+        }
+
+        function randomItem(items) {
+            return items[Math.floor(Math.random() * items.length)];
+          }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAINFALL Prediction</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f9; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100%;">
+    <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px;">
+        <h1 style="text-align: center; color: #333;">Rainfall Prediction</h1>
+        <form action="/predict" method="post">
+            <div style="margin-bottom: 15px;">
+                <label for="day" style="display: block; margin-bottom: 5px; color: #555;">Day:</label>
+                <input type="number" id="1" name="Day" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="Pressure" style="display: block; margin-bottom: 5px; color: #555;">Pressure:</label>
+                <input type="number" step="0.01" id="2" name="Pressure" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="max teperature" style="display: block; margin-bottom: 5px; color: #555;">Max Temperature:</label>
+                <input type="number" step="0.01" id="3" name="Max_Temperature" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="teperature" style="display: block; margin-bottom: 5px; color: #555;">Temperature:</label>
+                <input type="number" step="0.01" id="4" name="Temperature" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="min teperature" style="display: block; margin-bottom: 5px; color: #555;">Min Temperature:</label>
+                <input type="number" step="0.01" id="5" name="Min_Temperature" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="dew point" style="display: block; margin-bottom: 5px; color: #555;">Dew Point:</label>
+                <input type="number" step="0.01" id="6" name="Dew_Point" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="humidity" style="display: block; margin-bottom: 5px; color: #555;">Humidity:</label>
+                <input type="number" id="7" name="Humidity" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="cloud" style="display: block; margin-bottom: 5px; color: #555;">Cloud:</label>
+                <input type="number" id="8" name="Cloud" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="sunshine" style="display: block; margin-bottom: 5px; color: #555;">Sunshine:</label>
+                <input type="number" step="0.01" id="9" name="Sunshine" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="wind direction" style="display: block; margin-bottom: 5px; color: #555;">Wind Direction:</label>
+                <input type="number"  id="10" name="Wind_Direction" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <div style="margin-bottom: 15px;">
+                <label for="wind speed" style="display: block; margin-bottom: 5px; color: #555;">Wind Speed:</label>
+                <input type="number" step="0.01" id="11" name="Wind_Speed" required style="width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px;">
+            </div>
+            <button type="submit" style="width: 100%; padding: 10px; background-color: #28a745; border: none; border-radius: 4px; color: white; font-size: 16px; cursor: pointer;">Predict</button>
+        </form>
+        <div style="margin-top: 20px;">
+           
+            <h2 style="text-align: center; color: #333;">Prediction Result</h2>  
+            <h1>{{prediction_text}}</h1>
+            <p id="prediction" style="text-align: center; color: #555;">Enter data to see the prediction.</p>
+        </div>
+    </div>
+</body>
+</html>
